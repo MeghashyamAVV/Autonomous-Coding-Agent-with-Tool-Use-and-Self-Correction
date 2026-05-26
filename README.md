@@ -8,19 +8,13 @@ Task
 
  │
  
- ▼
- 
 [Node 1] generate_code   ← LLaMA 3.2 writes Python code
 
  │
  
- ▼
- 
 [Node 2] execute_code    ← subprocess runs it safely (no Docker needed)
 
  │
- 
- ▼
  
 [Node 3] check_result    ← exact output evaluation (no LLM judge)
 
