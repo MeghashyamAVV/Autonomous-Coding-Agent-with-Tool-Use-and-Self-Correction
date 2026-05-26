@@ -5,19 +5,33 @@ A ReAct-style agentic system built with LangGraph that writes Python code, execu
 ## How it works
 
 Task
+
  │
+ 
  ▼
+ 
 [Node 1] generate_code   ← LLaMA 3.2 writes Python code
+
  │
+ 
  ▼
+ 
 [Node 2] execute_code    ← subprocess runs it safely (no Docker needed)
+
  │
+ 
  ▼
+ 
 [Node 3] check_result    ← exact output evaluation (no LLM judge)
+
  │
+ 
  ├── PASS ──────────────────────────────────► END
+ 
  │
+ 
  └── FAIL + error context ──► back to Node 1 (self-correct)
+ 
                                (max 5 attempts)
 
 The key insight: on retry, the agent feeds the **exact error and expected output** back into the prompt so the model knows precisely what went wrong — not just that it failed.
